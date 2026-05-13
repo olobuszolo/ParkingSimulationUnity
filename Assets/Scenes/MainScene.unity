@@ -1380,7 +1380,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarAgent
   parkingEntryPoint: {fileID: 0}
-  circlePoints: []
+  circlePoints:
+  - {fileID: 975509900}
+  - {fileID: 30533327}
+  - {fileID: 290098758}
+  - {fileID: 777345637}
 --- !u!1 &975509899
 GameObject:
   m_ObjectHideFlags: 0
