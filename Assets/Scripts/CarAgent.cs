@@ -15,6 +15,9 @@ public class CarAgent : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    [Header("Parking")]
+    [SerializeField] private ParkingLot parkingLot;
+
     [Header("Flexible Driver")]
     [SerializeField] private float flexibleMaxPrice = 10f;
 
@@ -35,6 +38,10 @@ public class CarAgent : MonoBehaviour
     private int currentCircleIndex = 0;
 
     private bool isCircling = false;
+
+    private bool isParking = false;
+
+    private ParkingSpot targetParkingSpot;
 
     private void Start()
     {
@@ -79,13 +86,36 @@ public class CarAgent : MonoBehaviour
 
     private void Update()
     {
+
+        if (
+            isParking &&
+            !agent.pathPending &&
+            agent.remainingDistance < 0.5f
+        )
+        {
+            agent.isStopped = true;
+
+            if (targetParkingSpot != null)
+            {
+                targetParkingSpot.OccupySpot(gameObject);
+            }
+
+            Debug.Log(gameObject.name + " parked.");
+
+            isParking = false;
+
+            enabled = false;
+
+            return;
+        }
+
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            if (!isCircling)
+            if (!isCircling && !isParking)
             {
-                StartCircling();
+                DecideParking();
             }
-            else
+            else if (isCircling)
             {
                 GoToNextCirclePoint();
             }
@@ -122,4 +152,42 @@ public class CarAgent : MonoBehaviour
     {
         return driverType;
     }
+
+    private void DecideParking()
+    {
+        if (parkingLot == null)
+        {
+            StartCircling();
+            return;
+        }
+
+        bool hasFreeSpot = parkingLot.HasFreeSpots();
+
+        int currentPrice = parkingLot.GetCurrentPrice();
+
+        if (hasFreeSpot && currentPrice <= maxAcceptedPrice)
+        {
+            ParkingSpot freeSpot = parkingLot.GetFreeParkingSpot();
+
+            targetParkingSpot = freeSpot;
+
+            if (freeSpot != null)
+            {
+                isParking = true;
+
+                agent.SetDestination(
+                    freeSpot.GetParkingPoint().position
+                );
+
+                Debug.Log(gameObject.name + " decided to park.");
+            }
+        }
+        else
+        {
+            Debug.Log(gameObject.name + " decided to circle.");
+
+            StartCircling();
+        }
+    }
+
 }

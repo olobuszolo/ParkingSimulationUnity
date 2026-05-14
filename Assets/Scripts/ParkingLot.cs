@@ -70,4 +70,9 @@ public class ParkingLot : MonoBehaviour
 
         return null;
     }
+
+    public bool HasFreeSpots()
+    {
+        return GetFreeSpotsCount() > 0;
+    }
 }

@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 274206176}
   - component: {fileID: 274206175}
   - component: {fileID: 274206174}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InnerRoad_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,6 +457,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -554,7 +562,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
-  m_LocalPosition: {x: 0, y: 12, z: -10}
+  m_LocalPosition: {x: 0, y: 15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -616,7 +624,7 @@ GameObject:
   - component: {fileID: 385759886}
   - component: {fileID: 385759885}
   - component: {fileID: 385759884}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Road_To_Parking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,8 +640,8 @@ Transform:
   m_GameObject: {fileID: 385759882}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: 0.06, z: -1.5}
-  m_LocalScale: {x: 3, y: 0.1, z: 2}
+  m_LocalPosition: {x: -5.75, y: 0.06, z: -1.5}
+  m_LocalScale: {x: 3.5, y: 0.1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 588540009}
@@ -767,6 +775,14 @@ PrefabInstance:
     - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_Name
       value: ParkingSpot_01 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -957,6 +973,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -977,7 +1001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 588540009}
   - component: {fileID: 588540010}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RoadSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,12 +1044,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
   m_SerializedVersion: 0
   m_AgentTypeID: 0
-  m_CollectObjects: 2
+  m_CollectObjects: 0
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -1385,6 +1409,7 @@ MonoBehaviour:
   - {fileID: 30533327}
   - {fileID: 290098758}
   - {fileID: 777345637}
+  parkingLot: {fileID: 1329730221}
   flexibleMaxPrice: 10
   inflexibleMaxPrice: 20
   driverType: 0
@@ -1479,6 +1504,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1572,6 +1605,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (02)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1634,6 +1675,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (04)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1654,7 +1703,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.75
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1695,6 +1744,14 @@ PrefabInstance:
     - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_Name
       value: ParkingSpot_01 (06)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1798,7 +1855,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.75
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1839,6 +1896,14 @@ PrefabInstance:
     - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_Name
       value: ParkingSpot_01 (08)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1955,6 +2020,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1975,7 +2048,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.75
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2017,6 +2090,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (09)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2037,7 +2118,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.75
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2078,6 +2159,14 @@ PrefabInstance:
     - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_Name
       value: ParkingSpot_01 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2141,6 +2230,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2163,7 +2260,7 @@ GameObject:
   - component: {fileID: 1537391594}
   - component: {fileID: 1537391593}
   - component: {fileID: 1537391592}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InnerRoad_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2275,7 +2372,7 @@ GameObject:
   - component: {fileID: 1581853191}
   - component: {fileID: 1581853190}
   - component: {fileID: 1581853189}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InnerRoad_Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2427,6 +2524,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2449,7 +2554,7 @@ GameObject:
   - component: {fileID: 1747552673}
   - component: {fileID: 1747552672}
   - component: {fileID: 1747552671}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RoadMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2561,7 +2666,7 @@ GameObject:
   - component: {fileID: 1762414328}
   - component: {fileID: 1762414327}
   - component: {fileID: 1762414326}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InnerRoad_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2577,7 +2682,7 @@ Transform:
   m_GameObject: {fileID: 1762414324}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0.06, z: -6.5}
+  m_LocalPosition: {x: -3, y: 0.06, z: -6.5}
   m_LocalScale: {x: 2, y: 0.1, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2673,7 +2778,7 @@ GameObject:
   - component: {fileID: 1886384465}
   - component: {fileID: 1886384464}
   - component: {fileID: 1886384463}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: InnerRoad_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2825,6 +2930,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (03)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2887,6 +3000,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (05)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2907,7 +3028,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.75
+      value: 6.25
       objectReference: {fileID: 0}
     - target: {fileID: 2732413957146474492, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2948,6 +3069,14 @@ PrefabInstance:
     - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_Name
       value: ParkingSpot_01 (07)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3011,6 +3140,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3072,6 +3209,14 @@ PrefabInstance:
     - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_Name
       value: ParkingSpot_01 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3166,6 +3311,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkingSpot_01 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3231,6 +3384,14 @@ PrefabInstance:
     - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
       propertyPath: m_Name
       value: ParkingSpot_01 (01)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818244600495870960, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154205432962772734, guid: 22516691ea2344544a251e0e25f6d3b9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

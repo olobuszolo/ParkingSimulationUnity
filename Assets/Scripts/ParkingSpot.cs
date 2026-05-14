@@ -8,6 +8,8 @@ public class ParkingSpot : MonoBehaviour
 
     private Renderer spotRenderer;
 
+    [SerializeField] private Transform parkingPoint;
+
     private void Start()
     {
         spotRenderer = GetComponent<Renderer>();
@@ -53,5 +55,9 @@ public class ParkingSpot : MonoBehaviour
         {
             spotRenderer.material.color = Color.green;
         }
+    }
+    public Transform GetParkingPoint()
+    {
+        return parkingPoint;
     }
 }
