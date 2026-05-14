@@ -194,6 +194,7 @@ public class CarAgent : MonoBehaviour
             ParkingSpot freeSpot = parkingLot.GetFreeParkingSpot();
 
             targetParkingSpot = freeSpot;
+            targetParkingSpot.ReserveSpot();
 
             if (freeSpot != null)
             {
@@ -213,6 +214,21 @@ public class CarAgent : MonoBehaviour
 
             StartCircling();
         }
+    }
+
+    public void SetParkingLot(ParkingLot lot)
+    {
+        parkingLot = lot;
+    }
+
+    public void SetParkingEntryPoint(Transform entryPoint)
+    {
+        parkingEntryPoint = entryPoint;
+    }
+
+    public void SetCirclePoints(Transform[] points)
+    {
+        circlePoints = points;
     }
 
 }

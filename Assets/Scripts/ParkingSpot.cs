@@ -4,6 +4,8 @@ public class ParkingSpot : MonoBehaviour
 {
     public bool isOccupied = false;
 
+    private bool isReserved = false;
+
     public GameObject occupyingCar = null;
 
     private Renderer spotRenderer;
@@ -20,6 +22,7 @@ public class ParkingSpot : MonoBehaviour
     public void OccupySpot(GameObject car)
     {
         isOccupied = true;
+        isReserved = false;
         occupyingCar = car;
 
         UpdateColor();
@@ -39,7 +42,7 @@ public class ParkingSpot : MonoBehaviour
 
     public bool IsFree()
     {
-        return !isOccupied;
+        return !isOccupied && !isReserved;
     }
 
     private void UpdateColor()
@@ -60,4 +63,20 @@ public class ParkingSpot : MonoBehaviour
     {
         return parkingPoint;
     }
+
+    public bool IsReserved()
+    {
+        return isReserved;
+    }
+
+    public void ReserveSpot()
+    {
+        isReserved = true;
+    }
+
+    public void ClearReservation()
+    {
+        isReserved = false;
+    }
+
 }
