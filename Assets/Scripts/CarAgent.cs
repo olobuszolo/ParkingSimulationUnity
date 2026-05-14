@@ -39,6 +39,10 @@ public class CarAgent : MonoBehaviour
 
     private bool isCircling = false;
 
+    [SerializeField] private float parkingCheckInterval = 5f;
+
+    private float parkingCheckTimer = 0f;
+
     private bool isParking = false;
 
     private ParkingSpot targetParkingSpot;
@@ -120,10 +124,30 @@ public class CarAgent : MonoBehaviour
                 GoToNextCirclePoint();
             }
         }
+
+        if (isCircling)
+        {
+            parkingCheckTimer += Time.deltaTime;
+
+            if (parkingCheckTimer >= parkingCheckInterval)
+            {
+                parkingCheckTimer = 0f;
+
+                Debug.Log(gameObject.name + " checking parking again.");
+
+                DecideParking();
+            }
+        }
+
     }
 
     private void StartCircling()
     {
+        if (isCircling)
+        {
+            return;
+        }
+
         isCircling = true;
 
         currentCircleIndex = 0;
@@ -174,6 +198,7 @@ public class CarAgent : MonoBehaviour
             if (freeSpot != null)
             {
                 isParking = true;
+                isCircling = false;
 
                 agent.SetDestination(
                     freeSpot.GetParkingPoint().position
