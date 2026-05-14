@@ -1362,7 +1362,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.2, y: 0.6, z: -8.75}
-  m_LocalScale: {x: 1.4, y: 1, z: 0.9}
+  m_LocalScale: {x: 0.9, y: 1, z: 1.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1385,6 +1385,13 @@ MonoBehaviour:
   - {fileID: 30533327}
   - {fileID: 290098758}
   - {fileID: 777345637}
+  flexibleMaxPrice: 10
+  inflexibleMaxPrice: 20
+  driverType: 0
+  maxAcceptedPrice: 0
+  carRenderer: {fileID: 891440221}
+  flexibleMaterial: {fileID: 2100000, guid: 4a24a757a3abc254a9c6586f0ed38dca, type: 2}
+  inflexibleMaterial: {fileID: 2100000, guid: f33e27a4927cc4648aaf853c670006eb, type: 2}
 --- !u!1 &975509899
 GameObject:
   m_ObjectHideFlags: 0
