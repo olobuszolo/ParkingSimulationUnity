@@ -39,6 +39,8 @@ public class CarAgent : MonoBehaviour
 
     private bool isCircling = false;
 
+    private bool countedAsCircling = false;
+
     [SerializeField] private float parkingCheckInterval = 5f;
 
     private float parkingCheckTimer = 0f;
@@ -150,6 +152,12 @@ public class CarAgent : MonoBehaviour
 
         isCircling = true;
 
+        if (!countedAsCircling)
+        {
+            GameManager.Instance.AddCirclingCar();
+            countedAsCircling = true;
+        }
+
         currentCircleIndex = 0;
 
         agent.SetDestination(circlePoints[currentCircleIndex].position);
@@ -194,10 +202,18 @@ public class CarAgent : MonoBehaviour
             ParkingSpot freeSpot = parkingLot.GetFreeParkingSpot();
 
             targetParkingSpot = freeSpot;
-            targetParkingSpot.ReserveSpot();
 
-            if (freeSpot != null)
+            if (targetParkingSpot != null)
             {
+                targetParkingSpot.ReserveSpot();
+
+                if (countedAsCircling)
+                {
+                    GameManager.Instance.RemoveCirclingCar();
+                    countedAsCircling = false;
+                }
+                GameManager.Instance.AddParkedCar();
+
                 isParking = true;
                 isCircling = false;
 
