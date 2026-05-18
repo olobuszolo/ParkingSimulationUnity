@@ -12,6 +12,8 @@ public class ParkingSpot : MonoBehaviour
 
     [SerializeField] private Transform parkingPoint;
 
+    [SerializeField] private Transform entryWaypoint;
+
     private void Start()
     {
         spotRenderer = GetComponent<Renderer>();
@@ -26,8 +28,6 @@ public class ParkingSpot : MonoBehaviour
         occupyingCar = car;
 
         UpdateColor();
-
-        Debug.Log(gameObject.name + " is occupied.");
     }
 
     public void FreeSpot()
@@ -36,8 +36,6 @@ public class ParkingSpot : MonoBehaviour
         occupyingCar = null;
 
         UpdateColor();
-
-        Debug.Log(gameObject.name + " is now free.");
     }
 
     public bool IsFree()
@@ -77,6 +75,11 @@ public class ParkingSpot : MonoBehaviour
     public void ClearReservation()
     {
         isReserved = false;
+    }
+
+    public Transform GetEntryWaypoint()
+    {
+        return entryWaypoint;
     }
 
 }

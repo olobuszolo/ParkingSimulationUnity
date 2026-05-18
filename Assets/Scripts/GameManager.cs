@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     private int parkedCarsCount = 0;
     private int circlingCarsCount = 0;
+    private bool entryOccupied = false;
 
     private void Awake()
     {
@@ -47,4 +48,20 @@ public class GameManager : MonoBehaviour
     {
         return circlingCarsCount;
     }
+
+    public bool CanEnterParking()
+    {
+        return !entryOccupied && circlingCarsCount < 15;
+    }
+
+    public void OccupyEntry()
+    {
+        entryOccupied = true;
+    }
+
+    public void FreeEntry()
+    {
+        entryOccupied = false;
+    }
+
 }

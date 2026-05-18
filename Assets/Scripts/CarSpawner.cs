@@ -7,6 +7,9 @@ public class CarSpawner : MonoBehaviour
 
     [SerializeField] private Transform spawnPoint;
 
+    [SerializeField] private Transform entryReleaseWaypoint;
+    [SerializeField] private Transform entryOccupyWaypoint;
+
     [Header("References")]
     [SerializeField] private ParkingLot parkingLot;
 
@@ -47,8 +50,15 @@ public class CarSpawner : MonoBehaviour
             carAgent.SetParkingEntryPoint(parkingEntryPoint);
 
             carAgent.SetCirclePoints(circlePoints);
-        }
 
-        Debug.Log("Car spawned.");
+            carAgent.SetEntryReleaseWaypoint(
+                entryReleaseWaypoint
+            );
+
+            carAgent.SetEntryOccupyWaypoint(
+                entryOccupyWaypoint
+            );
+        }
     }
+
 }

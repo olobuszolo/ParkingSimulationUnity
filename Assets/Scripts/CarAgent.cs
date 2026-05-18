@@ -49,6 +49,11 @@ public class CarAgent : MonoBehaviour
 
     private ParkingSpot targetParkingSpot;
 
+    private bool isGoingToPark = false;
+    private Transform targetEntryWaypoint;
+    [SerializeField] private Transform entryReleaseWaypoint;
+    [SerializeField] private Transform entryOccupyWaypoint;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -83,11 +88,6 @@ public class CarAgent : MonoBehaviour
             }
         }
 
-        Debug.Log(
-            gameObject.name +
-            " | Driver Type: " + driverType +
-            " | Max Price: " + maxAcceptedPrice
-        );
     }
 
     private void Update()
@@ -104,9 +104,9 @@ public class CarAgent : MonoBehaviour
             if (targetParkingSpot != null)
             {
                 targetParkingSpot.OccupySpot(gameObject);
-            }
 
-            Debug.Log(gameObject.name + " parked.");
+                GameManager.Instance.AddParkedCar();
+            }
 
             isParking = false;
 
@@ -119,7 +119,17 @@ public class CarAgent : MonoBehaviour
         {
             if (!isCircling && !isParking)
             {
-                DecideParking();
+                if (GameManager.Instance.CanEnterParking())
+                {
+                    DecideParking();
+                }
+                else
+                {
+                    if (!agent.isStopped)
+                    {
+                        agent.isStopped = true;
+                    }
+                }
             }
             else if (isCircling)
             {
@@ -135,16 +145,27 @@ public class CarAgent : MonoBehaviour
             {
                 parkingCheckTimer = 0f;
 
-                Debug.Log(gameObject.name + " checking parking again.");
-
                 DecideParking();
             }
+        }
+
+        if (
+            agent.isStopped &&
+            !isCircling &&
+            !isParking &&
+            GameManager.Instance.CanEnterParking()
+        )
+        {
+            agent.isStopped = false;
+
+            DecideParking();
         }
 
     }
 
     private void StartCircling()
     {
+        ClearReservation();
         if (isCircling)
         {
             return;
@@ -165,6 +186,41 @@ public class CarAgent : MonoBehaviour
 
     private void GoToNextCirclePoint()
     {
+        Transform currentWaypoint =
+            circlePoints[currentCircleIndex];
+
+        if (currentWaypoint == entryOccupyWaypoint)
+{
+            GameManager.Instance.OccupyEntry();
+        }
+
+        if (currentCircleIndex == 1)
+        {
+            GameManager.Instance.FreeEntry();
+        }
+
+        if (
+            isGoingToPark &&
+            currentWaypoint == targetEntryWaypoint
+        )
+        {
+            if (countedAsCircling)
+            {
+                GameManager.Instance.RemoveCirclingCar();
+                countedAsCircling = false;
+            }
+
+            isParking = true;
+            isCircling = false;
+            isGoingToPark = false;
+
+            agent.SetDestination(
+                targetParkingSpot.GetParkingPoint().position
+            );
+
+            return;
+        }
+
         currentCircleIndex++;
 
         if (currentCircleIndex >= circlePoints.Length)
@@ -172,7 +228,9 @@ public class CarAgent : MonoBehaviour
             currentCircleIndex = 0;
         }
 
-        agent.SetDestination(circlePoints[currentCircleIndex].position);
+        agent.SetDestination(
+            circlePoints[currentCircleIndex].position
+        );
     }
 
     public float GetMaxAcceptedPrice()
@@ -187,6 +245,8 @@ public class CarAgent : MonoBehaviour
 
     private void DecideParking()
     {
+        ClearReservation();
+
         if (parkingLot == null)
         {
             StartCircling();
@@ -199,6 +259,8 @@ public class CarAgent : MonoBehaviour
 
         if (hasFreeSpot && currentPrice <= maxAcceptedPrice)
         {
+            ClearReservation();
+
             ParkingSpot freeSpot = parkingLot.GetFreeParkingSpot();
 
             targetParkingSpot = freeSpot;
@@ -207,27 +269,16 @@ public class CarAgent : MonoBehaviour
             {
                 targetParkingSpot.ReserveSpot();
 
-                if (countedAsCircling)
-                {
-                    GameManager.Instance.RemoveCirclingCar();
-                    countedAsCircling = false;
-                }
-                GameManager.Instance.AddParkedCar();
+                targetEntryWaypoint = freeSpot.GetEntryWaypoint();
 
-                isParking = true;
-                isCircling = false;
+                isGoingToPark = true;
 
-                agent.SetDestination(
-                    freeSpot.GetParkingPoint().position
-                );
+                isCircling = true;
 
-                Debug.Log(gameObject.name + " decided to park.");
             }
         }
         else
         {
-            Debug.Log(gameObject.name + " decided to circle.");
-
             StartCircling();
         }
     }
@@ -245,6 +296,28 @@ public class CarAgent : MonoBehaviour
     public void SetCirclePoints(Transform[] points)
     {
         circlePoints = points;
+    }
+
+    public void SetEntryReleaseWaypoint(
+        Transform waypoint
+    )
+    {
+        entryReleaseWaypoint = waypoint;
+    }
+
+    public void SetEntryOccupyWaypoint(
+        Transform waypoint
+    )
+    {
+        entryOccupyWaypoint = waypoint;
+    }
+
+    private void ClearReservation()
+    {
+        if (targetParkingSpot != null)
+        {
+            targetParkingSpot.ClearReservation();
+        }
     }
 
 }

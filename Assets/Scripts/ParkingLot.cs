@@ -7,8 +7,6 @@ public class ParkingLot : MonoBehaviour
     private void Start()
     {
         parkingSpots = FindObjectsByType<ParkingSpot>(FindObjectsSortMode.None);
-
-        Debug.Log("Parking system initialized.");
     }
 
     public int GetFreeSpotsCount()
