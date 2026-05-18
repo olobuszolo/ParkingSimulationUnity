@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public enum DriverType
 {
@@ -46,6 +47,7 @@ public class CarAgent : MonoBehaviour
     private float parkingCheckTimer = 0f;
 
     private bool isParking = false;
+    private bool isParked = false;
 
     private ParkingSpot targetParkingSpot;
 
@@ -53,6 +55,8 @@ public class CarAgent : MonoBehaviour
     private Transform targetEntryWaypoint;
     [SerializeField] private Transform entryReleaseWaypoint;
     [SerializeField] private Transform entryOccupyWaypoint;
+
+    [SerializeField] private float parkedTime = 10f;
 
     private void Start()
     {
@@ -109,13 +113,14 @@ public class CarAgent : MonoBehaviour
             }
 
             isParking = false;
+            isParked = true;
 
-            enabled = false;
+            StartCoroutine(LeaveParkingAfterTime());
 
             return;
         }
 
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!isParked && !agent.pathPending && agent.remainingDistance < 0.5f)
         {
             if (!isCircling && !isParking)
             {
@@ -153,6 +158,7 @@ public class CarAgent : MonoBehaviour
             agent.isStopped &&
             !isCircling &&
             !isParking &&
+            !isParked &&
             GameManager.Instance.CanEnterParking()
         )
         {
@@ -329,6 +335,20 @@ public class CarAgent : MonoBehaviour
         {
             targetParkingSpot.ClearReservation();
         }
+    }
+
+    private IEnumerator LeaveParkingAfterTime()
+    {
+        yield return new WaitForSeconds(parkedTime);
+
+        if (targetParkingSpot != null)
+        {
+            targetParkingSpot.FreeSpot();
+        }
+
+        GameManager.Instance.RemoveParkedCar();
+
+        Destroy(gameObject);
     }
 
 }

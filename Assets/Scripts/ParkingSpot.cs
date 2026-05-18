@@ -33,6 +33,9 @@ public class ParkingSpot : MonoBehaviour
     public void FreeSpot()
     {
         isOccupied = false;
+    
+        isReserved = false;
+
         occupyingCar = null;
 
         UpdateColor();
