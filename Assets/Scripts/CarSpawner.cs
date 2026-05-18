@@ -14,7 +14,7 @@ public class CarSpawner : MonoBehaviour
 
     [SerializeField] private Transform[] circlePoints;
 
-    [SerializeField] private float spawnInterval = 5f;
+    [SerializeField] private float spawnInterval = 3f;
 
     private float spawnTimer = 0f;
 
