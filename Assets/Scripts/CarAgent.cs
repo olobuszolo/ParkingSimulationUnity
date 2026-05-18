@@ -158,6 +158,8 @@ public class CarAgent : MonoBehaviour
         {
             agent.isStopped = false;
 
+            agent.SetDestination(parkingEntryPoint.position);
+
             DecideParking();
         }
 
@@ -194,7 +196,7 @@ public class CarAgent : MonoBehaviour
             GameManager.Instance.OccupyEntry();
         }
 
-        if (currentCircleIndex == 1)
+        if (currentWaypoint == entryReleaseWaypoint)
         {
             GameManager.Instance.FreeEntry();
         }
@@ -273,7 +275,16 @@ public class CarAgent : MonoBehaviour
 
                 isGoingToPark = true;
 
-                isCircling = true;
+                if (!isCircling)
+                {
+                    isCircling = true;
+
+                    currentCircleIndex = 0;
+
+                    agent.SetDestination(
+                        circlePoints[currentCircleIndex].position
+                    );
+                }
 
             }
         }

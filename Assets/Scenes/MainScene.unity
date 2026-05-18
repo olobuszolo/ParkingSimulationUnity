@@ -289,8 +289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CarSpawner
   carPrefab: {fileID: 1620043763191153768, guid: d5c9adb528af7f7459392a9a9f5bfe6e, type: 3}
   spawnPoint: {fileID: 2069523447}
-  entryReleaseWaypoint: {fileID: 30533327}
-  entryOccupyWaypoint: {fileID: 1349985766}
+  entryReleaseWaypoint: {fileID: 1847204438}
+  entryOccupyWaypoint: {fileID: 1881090157}
   parkingLot: {fileID: 1329730221}
   parkingEntryPoint: {fileID: 1042801362}
   circlePoints:
@@ -308,7 +308,7 @@ MonoBehaviour:
   - {fileID: 1881090157}
   - {fileID: 1192442442}
   - {fileID: 1349985766}
-  spawnInterval: 5
+  spawnInterval: 2
 --- !u!1 &274206172
 GameObject:
   m_ObjectHideFlags: 0
