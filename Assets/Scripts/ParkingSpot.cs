@@ -14,6 +14,8 @@ public class ParkingSpot : MonoBehaviour
 
     [SerializeField] private Transform entryWaypoint;
 
+    [SerializeField] private Transform exitWaypoint;
+
     private void Start()
     {
         spotRenderer = GetComponent<Renderer>();
@@ -83,6 +85,11 @@ public class ParkingSpot : MonoBehaviour
     public Transform GetEntryWaypoint()
     {
         return entryWaypoint;
+    }
+
+    public Transform GetExitWaypoint()
+    {
+        return exitWaypoint;
     }
 
 }

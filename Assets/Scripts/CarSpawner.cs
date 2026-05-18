@@ -21,6 +21,8 @@ public class CarSpawner : MonoBehaviour
 
     private float spawnTimer = 0f;
 
+    [SerializeField] private Transform leavePoint;
+
     private void Update()
     {
         spawnTimer += Time.deltaTime;
@@ -58,6 +60,8 @@ public class CarSpawner : MonoBehaviour
             carAgent.SetEntryOccupyWaypoint(
                 entryOccupyWaypoint
             );
+
+            carAgent.SetLeavePoint(leavePoint);
         }
     }
 

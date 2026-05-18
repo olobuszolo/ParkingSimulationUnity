@@ -58,6 +58,25 @@ public class CarAgent : MonoBehaviour
 
     [SerializeField] private float parkedTime = 10f;
 
+    // cofanie z miejsca parkingowego
+    [SerializeField] private float reverseDistance = 2f;
+
+    [SerializeField] private float reverseSpeed = 2f;
+
+    [SerializeField] private Transform exitTargetPoint;
+
+    private bool isLeavingParking = false;
+
+    [SerializeField] private Transform leavePoint;
+
+    private bool shouldLeaveMap = false;
+
+    private bool isLeavingMap = false;
+
+    private Transform targetExitWaypoint;
+
+    private bool hasLeftParking = false;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -96,6 +115,21 @@ public class CarAgent : MonoBehaviour
 
     private void Update()
     {
+        if (!agent.enabled)
+        {
+            return;
+        }
+
+        if (
+            isLeavingMap &&
+            !agent.pathPending &&
+            agent.remainingDistance < 0.5f
+        )
+        {
+            Destroy(gameObject);
+
+            return;
+        }
 
         if (
             isParking &&
@@ -124,15 +158,18 @@ public class CarAgent : MonoBehaviour
         {
             if (!isCircling && !isParking)
             {
-                if (GameManager.Instance.CanEnterParking())
+                if (!hasLeftParking)
                 {
-                    DecideParking();
-                }
-                else
-                {
-                    if (!agent.isStopped)
+                    if (GameManager.Instance.CanEnterParking())
                     {
-                        agent.isStopped = true;
+                        DecideParking();
+                    }
+                    else
+                    {
+                        if (!agent.isStopped)
+                        {
+                            agent.isStopped = true;
+                        }
                     }
                 }
             }
@@ -155,18 +192,50 @@ public class CarAgent : MonoBehaviour
         }
 
         if (
-            agent.isStopped &&
             !isCircling &&
             !isParking &&
+            !isLeavingMap &&
             !isParked &&
-            GameManager.Instance.CanEnterParking()
+            targetExitWaypoint != null &&
+            !agent.pathPending &&
+            agent.remainingDistance < 0.5f
         )
         {
-            agent.isStopped = false;
+            isCircling = true;
 
-            agent.SetDestination(parkingEntryPoint.position);
+            shouldLeaveMap = true;
 
-            DecideParking();
+            currentCircleIndex = GetClosestCirclePointIndex(targetExitWaypoint);
+
+            currentCircleIndex++;
+
+            if (currentCircleIndex >= circlePoints.Length)
+            {
+                currentCircleIndex = 0;
+            }
+
+            agent.SetDestination(
+                circlePoints[currentCircleIndex].position
+            );
+
+            targetExitWaypoint = null;
+
+            return;
+        }
+
+        if (
+            agent.enabled &&
+            agent.isStopped &&
+            !isParking &&
+            !isParked
+        )
+        {
+            if (GameManager.Instance.CanEnterParking())
+            {
+                agent.isStopped = false;
+
+                DecideParking();
+            }
         }
 
     }
@@ -196,6 +265,22 @@ public class CarAgent : MonoBehaviour
     {
         Transform currentWaypoint =
             circlePoints[currentCircleIndex];
+
+        if (
+            shouldLeaveMap &&
+            currentWaypoint.name.Contains("CirclePoint_3")
+        )
+        {
+            shouldLeaveMap = false;
+
+            isLeavingMap = true;
+
+            isCircling = false;
+
+            agent.SetDestination(leavePoint.position);
+
+            return;
+        }
 
         if (currentWaypoint == entryOccupyWaypoint)
 {
@@ -253,6 +338,10 @@ public class CarAgent : MonoBehaviour
 
     private void DecideParking()
     {
+        if (hasLeftParking)
+        {
+            return;
+        }
         ClearReservation();
 
         if (parkingLot == null)
@@ -278,6 +367,7 @@ public class CarAgent : MonoBehaviour
                 targetParkingSpot.ReserveSpot();
 
                 targetEntryWaypoint = freeSpot.GetEntryWaypoint();
+                targetExitWaypoint = freeSpot.GetExitWaypoint();
 
                 isGoingToPark = true;
 
@@ -348,7 +438,70 @@ public class CarAgent : MonoBehaviour
 
         GameManager.Instance.RemoveParkedCar();
 
-        Destroy(gameObject);
+        StartCoroutine(LeaveParkingRoutine());
+    }
+
+    private IEnumerator LeaveParkingRoutine()
+    {
+        isLeavingParking = true;
+
+        agent.enabled = false;
+
+        float reverseTime = 1f;
+
+        float timer = 0f;
+
+        while (timer < reverseTime)
+        {
+            timer += Time.deltaTime;
+
+            transform.position -=
+                transform.forward * reverseSpeed * Time.deltaTime;
+
+            transform.Rotate(
+                0f,
+                0f * Time.deltaTime,
+                0f
+            );
+
+            yield return null;
+        }
+
+        agent.enabled = true;
+
+        isLeavingParking = false;
+
+        agent.enabled = true;
+
+        isLeavingParking = false;
+
+        isParked = false;
+
+        hasLeftParking = true;
+
+        agent.SetDestination(
+            targetExitWaypoint.position
+        );
+    }
+
+    public void SetLeavePoint(Transform point)
+    {
+        leavePoint = point;
+    }
+
+    private int GetClosestCirclePointIndex(
+        Transform targetPoint
+    )
+    {
+        for (int i = 0; i < circlePoints.Length; i++)
+        {
+            if (circlePoints[i] == targetPoint)
+            {
+                return i;
+            }
+        }
+
+        return 0;
     }
 
 }
