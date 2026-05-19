@@ -53,15 +53,30 @@ public class ParkingSpot : MonoBehaviour
         if (spotRenderer == null)
             return;
 
+        Material mat = spotRenderer.material;
+
         if (isOccupied)
         {
-            spotRenderer.material.color = Color.red;
+            // W³¹czenie transparentnoœci dla URP Lit
+            mat.SetFloat("_Surface", 1); // 0=Opaque, 1=Transparent
+            mat.SetOverrideTag("RenderType", "Transparent");
+            mat.renderQueue = 3000;
+
+            Color transparentRed = new Color(1f, 0f, 0f, 0.35f);
+
+            mat.color = transparentRed;
         }
         else
         {
-            spotRenderer.material.color = Color.green;
+            // Brak zmiany koloru gdy wolne
+            Color current = mat.color;
+
+            current.a = 0f;
+
+            mat.color = current;
         }
     }
+
     public Transform GetParkingPoint()
     {
         return parkingPoint;
