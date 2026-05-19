@@ -16,9 +16,16 @@ public class ParkingSpot : MonoBehaviour
 
     [SerializeField] private Transform exitWaypoint;
 
+    private Color originalColor;
+
     private void Start()
     {
         spotRenderer = GetComponent<Renderer>();
+
+        // tworzy kopiê materia³u dla tego miejsca
+        spotRenderer.material = new Material(spotRenderer.material);
+
+        originalColor = spotRenderer.material.color;
 
         UpdateColor();
     }
@@ -57,23 +64,12 @@ public class ParkingSpot : MonoBehaviour
 
         if (isOccupied)
         {
-            // W³¹czenie transparentnoœci dla URP Lit
-            mat.SetFloat("_Surface", 1); // 0=Opaque, 1=Transparent
-            mat.SetOverrideTag("RenderType", "Transparent");
-            mat.renderQueue = 3000;
-
             Color transparentRed = new Color(1f, 0f, 0f, 0.35f);
-
             mat.color = transparentRed;
         }
         else
         {
-            // Brak zmiany koloru gdy wolne
-            Color current = mat.color;
-
-            current.a = 0f;
-
-            mat.color = current;
+            mat.color = originalColor;
         }
     }
 
