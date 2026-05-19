@@ -58,6 +58,8 @@ public class CarAgent : MonoBehaviour
 
     [SerializeField] private float parkedTime;
 
+    private bool isWaitingInQueue = false;
+
     // cofanie z miejsca parkingowego
     [SerializeField] private float reverseDistance = 2f;
 
@@ -89,7 +91,21 @@ public class CarAgent : MonoBehaviour
 
         SetupDriver();
 
-        agent.SetDestination(parkingEntryPoint.position);
+        if (GameManager.Instance.CanEnterParking())
+        {
+            agent.SetDestination(parkingEntryPoint.position);
+        }
+        else
+        {
+            int queueIndex = parkingLot.JoinQueue(this);
+
+            Transform queuePoint =
+                parkingLot.GetQueuePoint(queueIndex);
+
+            agent.SetDestination(queuePoint.position);
+
+            isWaitingInQueue = true;
+        }
     }
 
     private void SetupDriver()
@@ -126,30 +142,27 @@ public class CarAgent : MonoBehaviour
             return;
         }
 
-        bool carAhead = false;
 
-        if (
-            Physics.Raycast(
-                transform.position + Vector3.up * 0.5f,
-                transform.forward,
-                out RaycastHit hit,
-                2f
-            )
-        )
-        {
-            if (hit.collider.CompareTag("Car"))
-            {
-                carAhead = true;
-            }
-        }
-
-        if (carAhead)
-        {
-            agent.isStopped = true;
-        }
-        else if (!isParked && !isParking)
+        else if (!isParked && !isParking && !isWaitingInQueue)
         {
             agent.isStopped = false;
+        }
+
+        if (isWaitingInQueue)
+        {
+            if (
+                parkingLot.IsFirstInQueue(this) &&
+                GameManager.Instance.CanEnterParking()
+            )
+            {
+                parkingLot.LeaveQueue(this);
+
+                isWaitingInQueue = false;
+
+                DecideParking();
+            }
+
+            return;
         }
 
         if (
@@ -198,9 +211,16 @@ public class CarAgent : MonoBehaviour
                     }
                     else
                     {
-                        if (!agent.isStopped)
+                        if (!isWaitingInQueue)
                         {
-                            agent.isStopped = true;
+                            int queueIndex = parkingLot.JoinQueue(this);
+
+                            Transform queuePoint =
+                                parkingLot.GetQueuePoint(queueIndex);
+
+                            agent.SetDestination(queuePoint.position);
+
+                            isWaitingInQueue = true;
                         }
                     }
                 }
@@ -520,6 +540,14 @@ public class CarAgent : MonoBehaviour
         }
 
         return 0;
+    }
+
+    public void MoveToQueuePoint(Transform point)
+    {
+        if (agent.enabled)
+        {
+            agent.SetDestination(point.position);
+        }
     }
 
 }
