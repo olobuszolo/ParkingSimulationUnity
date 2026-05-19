@@ -56,7 +56,7 @@ public class CarAgent : MonoBehaviour
     [SerializeField] private Transform entryReleaseWaypoint;
     [SerializeField] private Transform entryOccupyWaypoint;
 
-    [SerializeField] private float parkedTime = 10f;
+    [SerializeField] private float parkedTime;
 
     // cofanie z miejsca parkingowego
     [SerializeField] private float reverseDistance = 2f;
@@ -80,6 +80,12 @@ public class CarAgent : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        agent.avoidancePriority = Random.Range(20, 80);
+
+        Debug.Log("Priority: " + agent.avoidancePriority);
+
+        parkedTime = Random.Range(2f, 10f);
 
         SetupDriver();
 
@@ -118,6 +124,32 @@ public class CarAgent : MonoBehaviour
         if (!agent.enabled)
         {
             return;
+        }
+
+        bool carAhead = false;
+
+        if (
+            Physics.Raycast(
+                transform.position + Vector3.up * 0.5f,
+                transform.forward,
+                out RaycastHit hit,
+                2f
+            )
+        )
+        {
+            if (hit.collider.CompareTag("Car"))
+            {
+                carAhead = true;
+            }
+        }
+
+        if (carAhead)
+        {
+            agent.isStopped = true;
+        }
+        else if (!isParked && !isParking)
+        {
+            agent.isStopped = false;
         }
 
         if (

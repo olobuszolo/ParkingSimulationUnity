@@ -94,6 +94,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hatchback_Car Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1939165918346196445, guid: 853f30c364c49304da0d760896bfa6d2, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4075078187970637465, guid: 853f30c364c49304da0d760896bfa6d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.85725

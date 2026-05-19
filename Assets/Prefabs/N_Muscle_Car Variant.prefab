@@ -94,6 +94,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: N_Muscle_Car Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1939165918346196445, guid: bd8e5bb42bc5b2942b4e373a0399365f, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4075078187970637465, guid: bd8e5bb42bc5b2942b4e373a0399365f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.38615
