@@ -282,16 +282,6 @@ public class CarAgent : MonoBehaviour
             return;
         }
 
-        if (currentWaypoint == entryOccupyWaypoint)
-{
-            GameManager.Instance.OccupyEntry();
-        }
-
-        if (currentWaypoint == entryReleaseWaypoint)
-        {
-            GameManager.Instance.FreeEntry();
-        }
-
         if (
             isGoingToPark &&
             currentWaypoint == targetEntryWaypoint
@@ -466,10 +456,6 @@ public class CarAgent : MonoBehaviour
 
             yield return null;
         }
-
-        agent.enabled = true;
-
-        isLeavingParking = false;
 
         agent.enabled = true;
 

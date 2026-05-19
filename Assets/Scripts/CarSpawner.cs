@@ -3,7 +3,7 @@ using UnityEngine;
 public class CarSpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    [SerializeField] private GameObject carPrefab;
+    [SerializeField] private GameObject[] carPrefabs;
 
     [SerializeField] private Transform spawnPoint;
 
@@ -37,8 +37,11 @@ public class CarSpawner : MonoBehaviour
 
     private void SpawnCar()
     {
+        GameObject randomCarPrefab =
+            carPrefabs[Random.Range(0, carPrefabs.Length)];
+
         GameObject spawnedCar = Instantiate(
-            carPrefab,
+            randomCarPrefab,
             spawnPoint.position,
             spawnPoint.rotation
         );
