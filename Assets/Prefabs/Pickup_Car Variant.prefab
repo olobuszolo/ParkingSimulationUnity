@@ -95,6 +95,10 @@ PrefabInstance:
       value: Pickup_Car Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1939165918346196445, guid: 91a18e45b7cb2d046b6f61f53d9f5daf, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939165918346196445, guid: 91a18e45b7cb2d046b6f61f53d9f5daf, type: 3}
       propertyPath: m_StoppingDistance
       value: 0.2
       objectReference: {fileID: 0}
@@ -104,7 +108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4075078187970637465, guid: 91a18e45b7cb2d046b6f61f53d9f5daf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.28113
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4075078187970637465, guid: 91a18e45b7cb2d046b6f61f53d9f5daf, type: 3}
       propertyPath: m_LocalPosition.z

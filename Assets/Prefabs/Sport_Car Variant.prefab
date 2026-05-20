@@ -13,6 +13,10 @@ PrefabInstance:
       value: Sport_Car Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1939165918346196445, guid: 51b7087371dd7d4418e187528d573563, type: 3}
+      propertyPath: m_BaseOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1939165918346196445, guid: 51b7087371dd7d4418e187528d573563, type: 3}
       propertyPath: m_StoppingDistance
       value: 0.2
       objectReference: {fileID: 0}
@@ -22,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4075078187970637465, guid: 51b7087371dd7d4418e187528d573563, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4075078187970637465, guid: 51b7087371dd7d4418e187528d573563, type: 3}
       propertyPath: m_LocalPosition.z
