@@ -319,7 +319,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222784287}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e47dd7525c46d0a4abce7f8c0974dbaf, type: 3}
   m_Name: 
@@ -2024,12 +2024,12 @@ GameObject:
   - component: {fileID: 448697450}
   - component: {fileID: 448697449}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: SimulationCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &448697449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3971,7 +3971,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 901805002}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1126014463}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: StartSimulation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &901805002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4998,17 +5010,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef5587ae578c5cd4db2151e7c5a84f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuController
-  minSpawnInput: {fileID: 0}
-  maxSpawnInput: {fileID: 0}
-  lowPriceInput: {fileID: 0}
-  mediumPriceInput: {fileID: 0}
-  highPriceInput: {fileID: 0}
-  lowThresholdInput: {fileID: 0}
-  mediumThresholdInput: {fileID: 0}
-  highThresholdInput: {fileID: 0}
-  mainMenuCanvas: {fileID: 0}
-  simulationCanvas: {fileID: 0}
-  carSpawner: {fileID: 0}
+  minSpawnInput: {fileID: 617468911}
+  maxSpawnInput: {fileID: 370457699}
+  lowPriceInput: {fileID: 1930360245}
+  mediumPriceInput: {fileID: 877909910}
+  highPriceInput: {fileID: 702866155}
+  lowThresholdInput: {fileID: 1090572388}
+  mediumThresholdInput: {fileID: 1283845253}
+  highThresholdInput: {fileID: 1440843418}
+  mainMenuCanvas: {fileID: 1126014458}
+  simulationCanvas: {fileID: 448697448}
+  carSpawner: {fileID: 222784289}
 --- !u!1001 &1174428338
 PrefabInstance:
   m_ObjectHideFlags: 0
