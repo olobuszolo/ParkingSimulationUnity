@@ -6110,6 +6110,8 @@ MonoBehaviour:
   highPriceInput: {fileID: 702866155}
   mediumThresholdInput: {fileID: 1283845253}
   highThresholdInput: {fileID: 1440843418}
+  minParkingTimeInput: {fileID: 595392094}
+  maxParkingTimeInput: {fileID: 929065645}
   mainMenuCanvas: {fileID: 1126014458}
   simulationCanvas: {fileID: 448697448}
   carSpawner: {fileID: 222784289}
