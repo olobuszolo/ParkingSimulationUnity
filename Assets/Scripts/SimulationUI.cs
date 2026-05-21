@@ -12,6 +12,7 @@ public class SimulationUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI freeSpotsText;
     [SerializeField] private TextMeshProUGUI parkedCarsText;
     [SerializeField] private TextMeshProUGUI circlingCarsText;
+    [SerializeField] private TextMeshProUGUI totalRevenueText;
 
     private void Update()
     {
@@ -25,6 +26,7 @@ public class SimulationUI : MonoBehaviour
         {
             parkedCarsText.text = "Parked cars: " + gameManager.GetParkedCarsCount();
             circlingCarsText.text = "Circling cars: " + gameManager.GetCirclingCarsCount();
+            totalRevenueText.text = "Total Revenue: " + gameManager.GetTotalRevenue();
         }
     }
 }

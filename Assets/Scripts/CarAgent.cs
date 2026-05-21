@@ -19,12 +19,6 @@ public class CarAgent : MonoBehaviour
     [Header("Parking")]
     [SerializeField] private ParkingLot parkingLot;
 
-    [Header("Flexible Driver")]
-    [SerializeField] private float flexibleMaxPrice = 10f;
-
-    [Header("Inflexible Driver")]
-    [SerializeField] private float inflexibleMaxPrice = 20f;
-
     [Header("Driver Settings")]
     [SerializeField] private DriverType driverType;
 
@@ -85,9 +79,10 @@ public class CarAgent : MonoBehaviour
 
         agent.avoidancePriority = Random.Range(20, 80);
 
-        Debug.Log("Priority: " + agent.avoidancePriority);
-
-        parkedTime = Random.Range(2f, 10f);
+        parkedTime = Random.Range(
+            SimulationSettings.minParkingTime,
+            SimulationSettings.maxParkingTime
+        );
 
         SetupDriver();
 
@@ -115,22 +110,12 @@ public class CarAgent : MonoBehaviour
         if (randomDriver == 0)
         {
             driverType = DriverType.Flexible;
-            maxAcceptedPrice = flexibleMaxPrice;
-
-            if (carRenderer != null && flexibleMaterial != null)
-            {
-                carRenderer.material = flexibleMaterial;
-            }
+            maxAcceptedPrice = SimulationSettings.highPrice;
         }
         else
         {
             driverType = DriverType.Inflexible;
-            maxAcceptedPrice = inflexibleMaxPrice;
-
-            if (carRenderer != null && inflexibleMaterial != null)
-            {
-                carRenderer.material = inflexibleMaterial;
-            }
+            maxAcceptedPrice = SimulationSettings.mediumPrice;
         }
 
     }
@@ -189,6 +174,8 @@ public class CarAgent : MonoBehaviour
                 targetParkingSpot.OccupySpot(gameObject);
 
                 GameManager.Instance.AddParkedCar();
+                float price = parkingLot.GetCurrentPrice();
+                GameManager.Instance.AddRevenue(price);
             }
 
             isParking = false;
@@ -394,7 +381,7 @@ public class CarAgent : MonoBehaviour
 
         bool hasFreeSpot = parkingLot.HasFreeSpots();
 
-        int currentPrice = parkingLot.GetCurrentPrice();
+        float currentPrice = parkingLot.GetCurrentPrice();
 
         if (hasFreeSpot && currentPrice <= maxAcceptedPrice)
         {

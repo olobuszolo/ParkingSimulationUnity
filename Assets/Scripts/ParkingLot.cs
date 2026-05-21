@@ -44,21 +44,21 @@ public class ParkingLot : MonoBehaviour
         return (float)GetOccupiedSpotsCount() / parkingSpots.Length * 100f;
     }
 
-    public int GetCurrentPrice()
+    public float GetCurrentPrice()
     {
         float occupancy = GetOccupancyPercentage();
 
-        if (occupancy < 30f)
+        if (occupancy >= SimulationSettings.highThreshold)
         {
-            return 5;
+            return SimulationSettings.highPrice;
         }
 
-        if (occupancy < 70f)
+        if (occupancy >= SimulationSettings.mediumThreshold)
         {
-            return 10;
+            return SimulationSettings.mediumPrice;
         }
 
-        return 20;
+        return SimulationSettings.lowPrice;
     }
 
     public ParkingSpot GetFreeParkingSpot()

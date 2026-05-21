@@ -17,22 +17,37 @@ public class CarSpawner : MonoBehaviour
 
     [SerializeField] private Transform[] circlePoints;
 
-    [SerializeField] private float spawnInterval = 3f;
+    [SerializeField] private Transform leavePoint;
 
     private float spawnTimer = 0f;
 
-    [SerializeField] private Transform leavePoint;
+    private float currentSpawnInterval;
+
+    private void Start()
+    {
+        SetRandomSpawnTime();
+    }
 
     private void Update()
     {
         spawnTimer += Time.deltaTime;
 
-        if (spawnTimer >= spawnInterval)
+        if (spawnTimer >= currentSpawnInterval)
         {
+            SpawnCar();
+
             spawnTimer = 0f;
 
-            SpawnCar();
+            SetRandomSpawnTime();
         }
+    }
+
+    private void SetRandomSpawnTime()
+    {
+        currentSpawnInterval = Random.Range(
+            SimulationSettings.minSpawnTime,
+            SimulationSettings.maxSpawnTime
+        );
     }
 
     private void SpawnCar()

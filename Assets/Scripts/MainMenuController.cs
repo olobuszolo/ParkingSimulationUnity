@@ -13,9 +13,12 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private TMP_InputField highPriceInput;
 
     [Header("Thresholds")]
-    [SerializeField] private TMP_InputField lowThresholdInput;
     [SerializeField] private TMP_InputField mediumThresholdInput;
     [SerializeField] private TMP_InputField highThresholdInput;
+
+    [Header("Parking Time")]
+    [SerializeField] private TMP_InputField minParkingTimeInput;
+    [SerializeField] private TMP_InputField maxParkingTimeInput;
 
     [Header("Objects")]
     [SerializeField] private GameObject mainMenuCanvas;
@@ -26,11 +29,32 @@ public class MainMenuController : MonoBehaviour
 
     public void StartSimulation()
     {
-        Debug.Log("Simulation Started");
+        SimulationSettings.minSpawnTime =
+            float.Parse(minSpawnInput.text);
 
-        Debug.Log("Min Spawn: " + minSpawnInput.text);
+        SimulationSettings.maxSpawnTime =
+            float.Parse(maxSpawnInput.text);
 
-        Debug.Log("Max Spawn: " + maxSpawnInput.text);
+        SimulationSettings.lowPrice =
+            float.Parse(lowPriceInput.text);
+
+        SimulationSettings.mediumPrice =
+            float.Parse(mediumPriceInput.text);
+
+        SimulationSettings.highPrice =
+            float.Parse(highPriceInput.text);
+
+        SimulationSettings.mediumThreshold =
+            float.Parse(mediumThresholdInput.text);
+
+        SimulationSettings.highThreshold =
+            float.Parse(highThresholdInput.text);
+
+        SimulationSettings.minParkingTime =
+            float.Parse(minParkingTimeInput.text);
+
+        SimulationSettings.maxParkingTime =
+            float.Parse(maxParkingTimeInput.text);
 
         mainMenuCanvas.SetActive(false);
 
@@ -38,4 +62,36 @@ public class MainMenuController : MonoBehaviour
 
         carSpawner.enabled = true;
     }
+
+    private void Start()
+    {
+        minSpawnInput.text =
+            SimulationSettings.minSpawnTime.ToString();
+
+        maxSpawnInput.text =
+            SimulationSettings.maxSpawnTime.ToString();
+
+        lowPriceInput.text =
+            SimulationSettings.lowPrice.ToString();
+
+        mediumPriceInput.text =
+            SimulationSettings.mediumPrice.ToString();
+
+        highPriceInput.text =
+            SimulationSettings.highPrice.ToString();
+
+        mediumThresholdInput.text =
+            SimulationSettings.mediumThreshold.ToString();
+
+        highThresholdInput.text =
+            SimulationSettings.highThreshold.ToString();
+
+        minParkingTimeInput.text =
+            SimulationSettings.minParkingTime.ToString();
+
+        maxParkingTimeInput.text =
+            SimulationSettings.maxParkingTime.ToString();
+
+    }
+
 }

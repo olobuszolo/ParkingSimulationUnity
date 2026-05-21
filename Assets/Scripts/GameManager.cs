@@ -7,6 +7,17 @@ public class GameManager : MonoBehaviour
     private int parkedCarsCount = 0;
     private int circlingCarsCount = 0;
     private bool entryOccupied = false;
+    private float totalRevenue = 0f;
+
+    public void AddRevenue(float amount)
+    {
+        totalRevenue += amount;
+    }
+
+    public float GetTotalRevenue()
+    {
+        return totalRevenue;
+    }
 
     private void Awake()
     {
